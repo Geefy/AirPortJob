@@ -8,6 +8,7 @@ namespace AirPortJob
     {
         int bagageCount = 0;
 
+        //Main bagage generation method
         public Bagage GenerateBags()
         {
             Bagage bagages;

@@ -48,6 +48,10 @@ namespace AirPortJob
         }
 
         public Dictionary<uint, Destination> destinationIds = new Dictionary<uint, Destination>();
+
+        /// <summary>
+        /// Enumerates the destination enum and puts it into a dictionary
+        /// </summary>
         void GenerateDestinationIds()
         {
             Array enumValues = Enum.GetValues(typeof(Destination));
@@ -57,6 +61,7 @@ namespace AirPortJob
             }
         }
 
+        //Generates bagage for the Desk bagage buffer using the bagage factory
         public void GiveBagageToDesk()
         {
             while (true)
@@ -74,7 +79,7 @@ namespace AirPortJob
                                 desks[i].bagageBuffer[j] = factory.GenerateBags();
 
 
-                                bagageDesked?.Invoke("Bagage with destionation: " + desks[i].DestinationId + " has been desked", new EventArgs());
+                                bagageDesked?.Invoke(desks[i], new EventArgs());
                                 Monitor.PulseAll(_lock);
                             }
                             else
@@ -88,6 +93,10 @@ namespace AirPortJob
             }
         }
 
+
+        /// <summary>
+        ///   Gives bagage to the sorting system bagageBuffer and removes bagage from desk bagageBuffer
+        /// </summary>
         public void GiveBagageToSorter()
         {
             Bagage bagage;
@@ -104,7 +113,7 @@ namespace AirPortJob
 
                                 bagage = desks[i].bagageBuffer[j];
                                 SortingSystem.GetSortingSystem().SortBagage(bagage, terminals);
-                                bagageSorted?.Invoke("Bagage with destionation: " + desks[i].DestinationId + " has been sorted", new EventArgs());
+                                bagageSorted?.Invoke(desks[i], new EventArgs());
                                 desks[i].bagageBuffer[j] = null;
                                 Monitor.PulseAll(_lock);
                             }
@@ -118,6 +127,7 @@ namespace AirPortJob
             }
         }
 
+        //Clears baggage from terminal bagage buffers every 5 second simulating a flight takeoff
         public void PlaneLeaveTerminal()
         {
             while (true)

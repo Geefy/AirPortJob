@@ -17,15 +17,16 @@ namespace AirPortJob
            TerminalThread.Start();
             Console.Read();
         }
+
         private static void Desk_BagageDesked(object sender, EventArgs e)
         {
-            string msg = (string)sender;
-            Console.WriteLine(msg);
+            Desk desk = (Desk)sender;
+            Console.WriteLine("Bagage with destionation: " + desk.DestinationId + " has been desked");
         }
         private static void Sort_BagageSorted(object sender, EventArgs e)
         {
-            string msg = (string)sender;
-            Console.WriteLine(msg);
+            Desk desk = (Desk)sender;
+            Console.WriteLine("Bagage with destionation: " + desk.DestinationId + " has been sorted");
         }
     }
 }

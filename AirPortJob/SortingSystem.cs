@@ -24,7 +24,11 @@ namespace AirPortJob
                 return instance;
             }
         }
-
+        /// <summary>
+        /// Sorts the bagages and puts it into the matching terminal arrays where destination is the same.
+        /// </summary>
+        /// <param name="bag"></param>
+        /// <param name="terminals"></param>
         public void SortBagage(Bagage bag, Terminal[] terminals)
         {
             for (int i = 0; i < terminals.Length; i++)

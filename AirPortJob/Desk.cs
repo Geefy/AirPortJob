@@ -19,6 +19,8 @@ namespace AirPortJob
 
         public Destination DestinationId { get => destination; set => destination = value; }
 
+
+        //Generates a random baganumber with a prefix using destination
         public string GenerateBagageNumber()
         {
             string bagageNumber;
@@ -26,6 +28,7 @@ namespace AirPortJob
             return bagageNumber;
         }
 
+        //Sets bagage destination and bagagenumber
         public void HandleBagage()
         {
 

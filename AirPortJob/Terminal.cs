@@ -26,6 +26,8 @@ namespace AirPortJob
 
             this.destination = destination;
         }
+
+
         public void ClearBagage()
         {
             for (int i = 0; i < bagageBuffer.Length; i++)
